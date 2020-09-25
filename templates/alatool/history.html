@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block contents %}
+
+<!--対戦履歴-->
+<h4 class="mt-1 mb-4 border-bottom">対戦履歴</h4>
+<div class="container-fluid"></div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-sm table-bordered table-responsive">
+        <thead class="thead-dark">
+        <tr>
+          <th>日付</th>
+          <th>区分</th>
+          <th>デッキ(自)</th>
+          <th>デッキ(相)</th>
+          <th>先後</th>
+          <th>勝敗</th>
+          <th>コメント</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+          {% for s in result_obj %}
+          <tr>
+            <td width="15%">{{ s.game_date }}</td>
+            <td width="10%">{{ s.battle_division }}</td>
+            <td width="15%">{{ s.my_title }}</td>
+            <td width="15%">{{ s.opp_title }}</td>
+            <td width="10%">{{ s.frirst_strike }}</td>
+            <td width="10%">{{ s.win_lose }}</td>
+            <td width="20%">{{ s.comment }}</td>
+            <td><a href="{% url 'alatool:detail' s.id %}">詳細</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      {% include 'page.html' %}
+    </div>      
+  </div>
+</div>
+{% csrf_token %}
+
+
+{% endblock %}

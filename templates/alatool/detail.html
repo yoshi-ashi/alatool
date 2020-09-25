@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block contents %}
+
+<!--詳細画面-->
+<h4 class="mt-1 mb-4 border-bottom">詳細</h4>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <p>対戦ゲーム：{{result.game_name}}</p>
+      <p>対戦日付：{{result.game_date}}</p>
+      <p>試合区分：{{result.battle_division}}</p>
+      <p>使用タイトル：{{result.my_title}}</p>
+      <p>相手タイトル：{{result.opp_title}}</p>
+      <p>先攻後攻：{{result.frirst_strike}}</p>
+      <p>勝敗：{{result.win_lose}}</p>
+      <p>コメント：{{result.comment}}</p>
+    </div>
+  </div>
+  <div class="row pl-3">
+    <a role="button" class="btn btn-primary" href="{% url 'alatool:edit' result.id %}">編集</a>
+        <form method="post" action="{% url 'alatool:delete' result.id %}">{% csrf_token %}
+          <button class="btn btn-warning ml-3" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+        </form>
+  </div>
+  <p></p>
+</div>
+{% endblock %}
+

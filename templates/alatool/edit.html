@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block contents %}
+{% load widget_tweaks %}
+
+<!--編集画面-->
+<h4 class="mt-1 mb-4 border-bottom">編集中…</h4>
+<form action="{% url 'alatool:edit' result.id %}" method="POST">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-auto">
+      対戦日付
+      {{ form.game_date|add_class:'form-control' }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      対戦ゲーム
+      {{ form.game_name|add_class:'form-control' }}
+      試合区分
+      {{ form.battle_division|add_class:'form-control' }}
+      使用タイトル
+      {{ form.my_title|add_class:'form-control' }}
+      相手タイトル
+      {{ form.opp_title|add_class:'form-control' }}
+      先攻後攻
+      {{ form.frirst_strike|add_class:'form-control' }}
+      勝敗
+      {{ form.win_lose|add_class:'form-control' }}
+      コメント
+      {{ form.comment|add_class:'form-control' }}
+      <p></p>
+      <button type="submit" name="button" class="btn btn-primary">保存</button>
+      <p></p>
+    </div>
+  </div>
+</div>
+{% csrf_token %}
+</form>
+{% endblock %}
